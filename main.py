@@ -40,13 +40,16 @@ def get_tag_name():
 
 
 # execute tbd -u <repo_url> -bot_token <bot_token> -b <branch>
-import subprocess, time
+import subprocess, time, os
 
 command = [f"/home/{user_name}/.local/bin/tbd", "-u", repo_url, "--chat_id", chat_id, "--bot_token", bot_token, "-b", branch, "-F", "-c", "-t", "--virtualenv_path=venv", "--create_virtualenv", f"/home/{user_name}/.local/bin/virtualenv venv"]
 process = subprocess.Popen(command)
+pid = process.pid
 old_tag_name = get_tag_name()
 while True:
     time.sleep(60)
     new_tag_name = get_tag_name()
     if old_tag_name != new_tag_name and new_tag_name != None:
-        process.terminate()
+        # Terminate the process
+        os.kill(pid, 15)
+        print(1/0)
