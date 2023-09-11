@@ -11,6 +11,8 @@ chat_id = os.getenv("CHAT_ID")
 github_username = os.getenv("GITHUB_USERNAME")
 github_repository = os.getenv("GITHUB_REPOSITORY")
 
+user_name = os.getenv("OS_USERNAME")
+
 def get_tag_name():
     import requests
 
@@ -40,7 +42,7 @@ def get_tag_name():
 # execute tbd -u <repo_url> -bot_token <bot_token> -b <branch>
 import subprocess, time
 
-command = ["/home/chelokot/.local/bin/tbd", "-u", repo_url, "--chat_id", chat_id, "--bot_token", bot_token, "-b", branch, "-F", "-c", "-t", "--virtualenv_path=venv", "--create_virtualenv", "/home/chelokot/.local/bin/virtualenv venv"]
+command = [f"/home/{user_name}/.local/bin/tbd", "-u", repo_url, "--chat_id", chat_id, "--bot_token", bot_token, "-b", branch, "-F", "-c", "-t", "--virtualenv_path=venv", "--create_virtualenv", f"/home/{user_name}/.local/bin/virtualenv venv"]
 process = subprocess.Popen(command)
 old_tag_name = get_tag_name()
 while True:
