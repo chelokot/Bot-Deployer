@@ -42,8 +42,8 @@ def get_tag_name():
 # execute tbd -u <repo_url> -bot_token <bot_token> -b <branch>
 import subprocess, time, os
 
-stdoutput_path = f"/home/andrew/var/log/telegram_deployer.log"
-stderror_path = f"/home/andrew/var/log/telegram_deployer_error.log"
+stdoutput_path = f"/home/{user_name}/var/log/telegram_deployer2.log"
+stderror_path = f"/home/{user_name}/var/log/telegram_deployer_error2.log"
 
 command = [f"/home/{user_name}/.local/bin/tbd", "-u", repo_url, "--chat_id", chat_id, "--bot_token", bot_token, "-b", branch, "-F", "-c", "-t", "--virtualenv_path=venv", "--create_virtualenv", f"/home/{user_name}/.local/bin/virtualenv venv"]
 process = subprocess.Popen(command, stdout=open(stdoutput_path, 'a'), stderr=open(stderror_path, 'a'))
