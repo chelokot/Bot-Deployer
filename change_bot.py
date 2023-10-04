@@ -38,7 +38,7 @@ async def main():
             This is just trick to send message to bot every second
             """
             global last_check
-            if time.time() - last_check > 600 and time.localtime().tm_hour >= 7 and time.localtime().tm_hour <= 15:
+            if time.time() - last_check > 60 and time.localtime().tm_hour >= 7 and time.localtime().tm_hour <= 15:
                 last_check = time.time()
                 await client.send_message("@nikita_kolos_bot", "пара")
 
@@ -56,8 +56,9 @@ async def main():
                     if item["subject"] in text:
                         prepod = item["prepod"]
                         break
-                
-                if prepod is not None:
+
+                current_bot_name = await client.get_entity("@nikita_kolos_bot")
+                if prepod is not None and current_bot_name.username != prepod["name"]:
                     await client.send_message('@BotFather', '/setname')
                     time.sleep(1)
                     await client.send_message('@BotFather', "@nikita_kolos_bot")
