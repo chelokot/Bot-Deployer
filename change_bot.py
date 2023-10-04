@@ -58,7 +58,7 @@ async def main():
                         break
 
                 current_bot_name = await client.get_entity("@nikita_kolos_bot")
-                if prepod is not None and current_bot_name.username != prepod["name"]:
+                if prepod is not None and current_bot_name.name != prepod["name"]:
                     await client.send_message('@BotFather', '/setname')
                     time.sleep(1)
                     await client.send_message('@BotFather', "@nikita_kolos_bot")
