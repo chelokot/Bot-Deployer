@@ -49,10 +49,16 @@ command = [f"/home/{user_name}/.local/bin/tbd", "-u", repo_url, "--chat_id", cha
 process = subprocess.Popen(command, stdout=open(stdoutput_path, 'a'), stderr=open(stderror_path, 'a'))
 pid = process.pid
 old_tag_name = get_tag_name()
+
+command2 = ["python3", f"change_bot.py"]
+process2 = subprocess.Popen(command2, stdout=open(stdoutput_path, 'a'), stderr=open(stderror_path, 'a'))
+pid2 = process2.pid
+
 while True:
     time.sleep(60)
     new_tag_name = get_tag_name()
     if old_tag_name != new_tag_name and new_tag_name != None:
         # Terminate the process
         os.kill(pid, 15)
+        os.kill(pid2, 15)
         print(1/0)
